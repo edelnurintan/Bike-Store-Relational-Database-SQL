@@ -1,6 +1,6 @@
 # BIKE-STORE-RELATIONAL-DATABASE-SQL
 Dalam proyek ini, dilakukan pembangunan, pengelolaan, dan analisis sistem database untuk mendukung proses bisnis, mencakup manajemen produk, stok, pelanggan, dan penjualan. Proyek ini melibatkan pembuatan struktur tabel yang dilengkapi dengan **Primary Key**, **Foreign Key**, serta pengelolaan relasi antar tabel menggunakan **SQL** untuk memastikan integritas dan konsistensi data. Selain itu, berbagai query dirancang untuk keperluan analisis data penjualan dan pembuatan laporan operasional yang relevan.
-![bike](https://github.com/edelnurintan/Bike-Store-Relational-Database-SQL/blob/main/sepeda.png)
+![bike](https://github.com/edelnurintan/Bike-Store-Relational-Database-SQL/blob/main/diag.png)
 
 ## Dataset https://www.kaggle.com/datasets/dillonmyrick/bike-store-sample-database
 
@@ -101,6 +101,9 @@ ALTER COLUMN order_id INT NOT NULL;
 
 ALTER TABLE order_items
 ADD CONSTRAINT FK_order_item FOREIGN KEY (order_id) REFERENCES orders (order_id);
+
+ALTER TABLE order_items
+ADD CONSTRAINT FK_product_order FOREIGN KEY (product_id) REFERENCES products (product_id);
 ```
 ##  TABLE ORDERS (Membuat PK dan FK dengan table customers,orders,orders dan staffs)
 ``` sql
