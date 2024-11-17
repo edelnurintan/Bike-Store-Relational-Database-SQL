@@ -165,7 +165,7 @@ ALTER COLUMN store_id INT NOT NULL;
 ALTER TABLE stores
 ADD CONSTRAINT PK_store PRIMARY KEY (store_id);
 ```
-# Memmbuat Relasi
+# Membuat Relasi Antar Table yang Diperlukan
 ## Menampilkan semua pesanan yang dilakukan setiap pelangggan
 ``` sql
 SELECT
