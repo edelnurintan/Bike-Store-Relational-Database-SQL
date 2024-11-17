@@ -278,4 +278,20 @@ GROUP BY
 ORDER BY 
     total_terjual DESC;
 ```
-
+## Membuat Laporan Pesanan Bulanan dari Data Harian
+``` sql
+SELECT 
+    YEAR(order_date) AS order_year, 
+    DATENAME(MONTH, order_date) AS order_month_name,
+    SUM(order_items.quantity * (order_items.list_price - order_items.discount)) AS total_sales
+FROM 
+    orders
+INNER JOIN 
+    order_items 
+ON 
+    orders.order_id = order_items.order_id
+GROUP BY 
+    YEAR(order_date), DATENAME(MONTH, order_date)
+ORDER BY 
+    order_year, DATENAME(MONTH, order_date);
+```
