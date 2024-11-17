@@ -258,4 +258,21 @@ HAVING
 	COUNT(DISTINCT orders.order_date)>1;
 ```
 
+## Mengidentifikasi Produk yang Paling Banyak Dibeli
+``` sql
+SELECT 
+    products.product_id,
+    products.product_name,
+    SUM(order_items.quantity) AS total_terjual
+FROM 
+    products
+INNER JOIN 
+    order_items 
+ON 
+    products.product_id = order_items.product_id
+GROUP BY 
+    products.product_id, products.product_name
+ORDER BY 
+    total_terjual DESC;
+```
 
