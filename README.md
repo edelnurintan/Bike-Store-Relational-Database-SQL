@@ -190,6 +190,16 @@ INNER JOIN
 	products
 	ON order_items.product_id = products.product_id;
 ```
+| customer_id | first_name | order_id | product_id | product_name                                      | quantity |
+|-------------|------------|----------|------------|--------------------------------------------------|----------|
+| 259         | Johnathan  | 1        | 20         | Electra Townie Original 7D EQ - Women's - 2016  | 1        |
+| 259         | Johnathan  | 1        | 8          | Trek Remedy 29 Carbon Frameset - 2016           | 2        |
+| 259         | Johnathan  | 1        | 10         | Surly Straggler - 2016                          | 2        |
+| 259         | Johnathan  | 1        | 16         | Electra Townie Original 7D EQ - 2016            | 2        |
+| 259         | Johnathan  | 1        | 4          | Trek Fuel EX 8 29 - 2016                        | 2        |
+| 1212        | Jaqueline  | 2        | 20         | Electra Townie Original 7D EQ - Women's - 2016  | 1        |
+| ...         | ...        | ...      | ...        | ...                                              | ...      |
+
 ## Menampilkan Produk Berdasarkan Kategori Tertentu
 ``` sql
 SELECT
@@ -207,6 +217,16 @@ INNER JOIN
 WHERE
 	categories.category_name IN ('Mountain Bikes','Electric Bikes');
 ```
+| product_id | model_year | list_price | category_id | category_name  |
+|------------|------------|------------|-------------|----------------|
+| 1          | 2016       | 379.99     | 6           | Mountain Bikes |
+| 2          | 2016       | 749.99     | 6           | Mountain Bikes |
+| 3          | 2016       | 999.99     | 6           | Mountain Bikes |
+| 4          | 2016       | 2899.99    | 6           | Mountain Bikes |
+| 5          | 2016       | 1320.99    | 6           | Mountain Bikes |
+| 6          | 2016       | 469.99     | 6           | Mountain Bikes |
+| ...        | ...        | ...        | ...         | ...            |
+
 ## Menampilkan total pesanan per pelanggan
 ``` sql
 SELECT 
@@ -228,6 +248,17 @@ GROUP BY
 	customers.customer_id,
 	customers.first_name;
 ```
+| customer_id | first_name | Total_harga |
+|-------------|------------|-------------|
+| 1234        | Joshua     | 2269,95     |
+| 902         | Elease     | 1343,96     |
+| 355         | Arvilla    | 3199,97     |
+| 687         | Cecilia    | 8638,92     |
+| 23          | Kaylee     | 5139,96     |
+| 46          | Monika     | 9589,90     |
+| 710         | Ezra       | 1897,99     |
+| ...         | ...        | ...         |
+
 ## Mencari sisa stock terendah 
 ``` sql
 SELECT 
@@ -243,6 +274,19 @@ WHERE
 ORDER BY
 	sisa_stok ASC;
 ```
+| product_name                           | sisa_stok |
+|----------------------------------------|-----------|
+| Trek Remedy 29 Carbon Frameset - 2016 | 0         |
+| Surly Ice Cream Truck Frameset - 2016 | 0         |
+| Surly Wednesday Frameset - 2016       | 0         |
+| Heller Shagamaw Frame - 2016          | 1         |
+| Trek Remedy 29 Carbon Frameset - 2016 | 1         |
+| Trek Fuel EX 8 29 - 2016              | 2         |
+| Heller Shagamaw Frame - 2016          | 3         |
+| Ritchey Timberwolf Frameset - 2016    | 5         |
+| Surly Wednesday Frameset - 2016       | 6         |
+| ...                                    | ...       |
+
 ## Mencari pelanggaan yang melakukan pesanan lebih dari sekali
 ``` sql
 SELECT 
@@ -260,6 +304,16 @@ GROUP BY
 HAVING 
 	COUNT(DISTINCT orders.order_date)>1;
 ```
+| customer_id | first_name | Total_order |
+|-------------|------------|-------------|
+| 1           | Debra      | 3           |
+| 2           | Kasha      | 3           |
+| 3           | Tameka     | 3           |
+| 4           | Daryl      | 3           |
+| 5           | Charolette | 3           |
+| 6           | Lyndsey    | 3           |
+| 7           | Latasha    | 3           |
+| ...         | ...        | ...         |
 
 ## Mengidentifikasi Produk yang Paling Banyak Dibeli
 ``` sql
@@ -278,6 +332,17 @@ GROUP BY
 ORDER BY 
     total_terjual DESC;
 ```
+| product_id | product_name                                    | total_terjual |
+|------------|------------------------------------------------|---------------|
+| 6          | Surly Ice Cream Truck Frameset - 2016          | 167           |
+| 13         | Electra Cruiser 1 (24-Inch) - 2016             | 157           |
+| 16         | Electra Townie Original 7D EQ - 2016           | 156           |
+| 7          | Trek Slash 8 27.5 - 2016                       | 154           |
+| 23         | Electra Girl's Hawaii 1 (20-Inch) - 2015/2016  | 154           |
+| 12         | Electra Townie Original 21D - 2016             | 153           |
+| 11         | Surly Straggler 650b - 2016                    | 151           |
+| ...        | ...                                            | ...           |
+
 ## Membuat Laporan Pesanan Bulanan dari Data Harian
 ``` sql
 SELECT 
@@ -296,8 +361,17 @@ ORDER BY
     order_year, DATENAME(MONTH, order_date);
 ```
 
-| customer_id | first_name | last_name | email                |
-|-------------|------------|-----------|----------------------|
-| 1           | John       | Doe       | john.doe@example.com |
-| 2           | Jane       | Smith     | jane.smith@example.com |
+| order_year | order_month_name | total_sales  |
+|------------|------------------|--------------|
+| 2016       | April            | 187204,79    |
+| 2016       | August           | 253105,66    |
+| 2016       | December         | 223671,37    |
+| 2016       | February         | 175743,09    |
+| 2016       | January          | 241161,11    |
+| 2016       | July             | 222830,89    |
+| 2016       | June             | 231100,38    |
+| 2016       | March            | 202134,86    |
+| 2016       | May              | 228678,79    |
+| 2016       | November         | 205295,35    |
+| ...        | ...              | ...          |
 
