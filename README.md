@@ -69,3 +69,23 @@ Pada dataset ini terdapat 8 tabel yang berisi informasi tentang penjualan sepeda
 - city
 - state
 - zip_code
+  
+Karena dataset sudah tersedia dalam format CSV, maka proses pembuatan tabel baru pada SQL (CREATE TABLE) tidak diperlukan. Langkah selanjutnya adalah langsung menetapkan Primary Key dan Foreign Key pada tabel yang diimpor.
+
+## TABLE BRANDS (Membuat Primary Key)
+``` sql
+ALTER TABLE brands
+ALTER COLUMN brand_id INT NOT NULL;
+
+ALTER TABLE brands
+ADD CONSTRAINT PK_brands PRIMARY KEY (brand_id);
+```
+## TABLE CATEGORIES (Membuat Primary Key)
+``` sql
+ALTER TABLE categories
+ALTER COLUMN category_id INT NOT NULL;
+
+ALTER TABLE categories
+ADD CONSTRAINT PK_categories PRIMARY KEY (category_id);
+```
+
