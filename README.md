@@ -295,3 +295,9 @@ GROUP BY
 ORDER BY 
     order_year, DATENAME(MONTH, order_date);
 ```
+
+| customer_id | first_name | last_name | email                |
+|-------------|------------|-----------|----------------------|
+| 1           | John       | Doe       | john.doe@example.com |
+| 2           | Jane       | Smith     | jane.smith@example.com |
+
