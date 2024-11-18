@@ -208,7 +208,7 @@ SELECT
 	products.model_year,
 	products.list_price,
 	categories.category_id,
-	category_name
+	categories.category_name
 FROM
 	products
 INNER JOIN
